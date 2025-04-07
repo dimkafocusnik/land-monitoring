@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -22,6 +21,7 @@
             text-align: center;
             color: white;
             white-space: nowrap;
+            transition: width 0.4s ease;
         }
         input[type="number"] {
             width: 80px;
@@ -30,7 +30,7 @@
     </style>
 </head>
 <body>
-    <h1>Мониторинг заполнения участков</h1>
+    <h1>Мониторинг заполнения участков и улиц</h1>
     <table>
         <thead>
             <tr>
@@ -76,9 +76,15 @@
 
     <script>
         function updateProgress(id) {
-            const total = parseInt(document.getElementById(`totalPlots${id}`).value) || 0;
-            const filled = parseInt(document.getElementById(`filledPlots${id}`).value) || 0;
-            const percent = total > 0 ? Math.min(Math.round((filled / total) * 100), 100) : 0;
+            const totalStreets = parseInt(document.getElementById(`totalStreets${id}`).value) || 0;
+            const filledStreets = parseInt(document.getElementById(`filledStreets${id}`).value) || 0;
+            const totalPlots = parseInt(document.getElementById(`totalPlots${id}`).value) || 0;
+            const filledPlots = parseInt(document.getElementById(`filledPlots${id}`).value) || 0;
+
+            const totalItems = totalStreets + totalPlots;
+            const filledItems = filledStreets + filledPlots;
+
+            const percent = totalItems > 0 ? Math.min(Math.round((filledItems / totalItems) * 100), 100) : 0;
 
             const bar = document.getElementById(`progressBar${id}`);
             bar.style.width = percent + "%";

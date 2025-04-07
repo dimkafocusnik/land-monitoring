@@ -4,28 +4,77 @@
     <meta charset="UTF-8">
     <title>Мониторинг заполнения</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        h1 { color: #2c3e50; }
-        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
-        th { background-color: #f5f5f5; }
-        .progress-container {
-            width: 100%;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            overflow: hidden;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f0f4f8, #e0eafc);
+            margin: 0;
+            padding: 40px;
+            color: #2c3e50;
         }
-        .progress-bar {
-            height: 20px;
-            background-color: #4caf50;
+
+        h1 {
             text-align: center;
-            color: white;
-            white-space: nowrap;
-            transition: width 0.4s ease;
+            font-size: 32px;
+            margin-bottom: 30px;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .progress-container {
+            background-color: #ecf0f1;
+            border-radius: 30px;
+            overflow: hidden;
+            height: 20px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #4caf50, #81c784);
+            color: white;
+            text-align: center;
+            white-space: nowrap;
+            transition: width 0.5s ease-in-out;
+            font-size: 14px;
+        }
+
         input[type="number"] {
-            width: 80px;
-            padding: 4px;
+            width: 70px;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        #footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -59,7 +108,7 @@
                 <td><input type="number" id="totalPlots2" value="0" min="0" onchange="updateProgress(2)"></td>
                 <td><input type="number" id="filledStreets2" value="0" min="0" onchange="updateProgress(2)"></td>
                 <td><input type="number" id="filledPlots2" value="0" min="0" onchange="updateProgress(2)"></td>
-                <td><div class="progress-container"><div id="progressBar2" class="progress-bar" style="width:0%">0%</div></div></td>
+                <td><div class="progress-container"><div id="progressBar2" class="progress-bar" style="width:0%">0%</</div></div></td>
                 <td id="status2">Не начато</td>
             </tr>
             <tr>
@@ -73,6 +122,10 @@
             </tr>
         </tbody>
     </table>
+
+    <div id="footer">
+        © 2025 Застройщик | Онлайн-мониторинг заполняемости данных
+    </div>
 
     <script>
         function updateProgress(id) {
